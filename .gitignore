@@ -1,2 +1,6 @@
 /persp-confs/*
 *~
+projectile-bookmarks.eld
+transient/*
+.cask/*
+elpa/*
