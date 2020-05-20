@@ -4,3 +4,7 @@ projectile-bookmarks.eld
 transient/*
 .cask/*
 elpa/*
+history
+.org-id-locations
+.hg*
+#*

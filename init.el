@@ -1,4 +1,4 @@
-;;; package --- Summary
+;; package --- Summary
 ;;; Code:
 ;;; Commentary:
 
@@ -45,7 +45,7 @@
     ("76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" "84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
  '(org-modules
    (quote
-    (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m org-drill)))
+    (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
  '(package-selected-packages
    (quote
     (js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen plantuml-mode htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region magit imenu-list ibuffer-projectile zenburn-theme))))
@@ -368,5 +368,12 @@
   ;; https://github.com/emacs-lsp/lsp-ui/issues/243
   (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
     (setq mode-line-format nil)))
+
+;; org-drill
+(eval-after-load "org"
+  '(progn
+    (add-to-list 'load-path "~/.emacs.d/lisp/")
+    (add-to-list 'load-path "~/.emacs.d/org-drill/")
+    (require 'org-drill)))
 
 ;;; .emacs ends here
