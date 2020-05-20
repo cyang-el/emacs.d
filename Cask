@@ -30,7 +30,6 @@
 (depends-on "whole-line-or-region")
 (depends-on "imenu-list")
 (depends-on "org")
-(depends-on "org-drill")
 (depends-on "plantuml-mode")
 (depends-on "elscreen")
 (depends-on "elscreen-fr")
