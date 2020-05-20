@@ -60,3 +60,4 @@
 (depends-on "tide")
 (depends-on "hcl-mode")
 (depends-on "terraform-mode")
+(depends-on "rustic")
