@@ -43,6 +43,9 @@
  '(custom-safe-themes
    (quote
     ("76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" "84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
+ '(org-modules
+   (quote
+    (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m org-drill)))
  '(package-selected-packages
    (quote
     (js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen plantuml-mode htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region magit imenu-list ibuffer-projectile zenburn-theme))))
