@@ -8,3 +8,7 @@ history
 .org-id-locations
 .hg*
 \#*
+.lsp-session-*
+.cache*
+eshell*
+workspace*
