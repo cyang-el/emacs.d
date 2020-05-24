@@ -329,45 +329,95 @@
 	       (kbd "C-c w") 'delete-trailing-whitespace))))
 
 ;;; lsp
-(use-package lsp-mode
-  :init (setq lsp-keymap-prefix "C-c l")
+;; (use-package lsp-mode
+;;   :init (setq lsp-keymap-prefix "C-c l")
+;;   :ensure t
+;;   :commands lsp
+;;   :custom
+;;   (lsp-auto-guess-root nil)
+;;   (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
+;;   :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
+;;   :hook ((java-mode) . lsp)
+;;          (lsp-mode . lsp-enable-which-key-integration))
+
+
+;; (use-package lsp-ui
+;;   :after lsp-mode
+;;   :diminish
+;;   :commands lsp-ui-mode
+;;   :custom-face
+;;   (lsp-ui-doc-background ((t (:background nil))))
+;;   (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
+;;   :bind (:map lsp-ui-mode-map
+;;               ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+;;               ([remap xref-find-references] . lsp-ui-peek-find-references)
+;;               ("C-c u" . lsp-ui-imenu))
+;;   :custom
+;;   (lsp-ui-doc-enable t)
+;;   (lsp-ui-doc-header t)
+;;   (lsp-ui-doc-include-signature t)
+;;   (lsp-ui-doc-position 'top)
+;;   (lsp-ui-doc-border (face-foreground 'default))
+;;   (lsp-ui-sideline-enable nil)
+;;   (lsp-ui-sideline-ignore-duplicate t)
+;;   (lsp-ui-sideline-show-code-actions nil)
+;;   :config
+;;   ;; Use lsp-ui-doc-webkit only in GUI
+;;   (setq lsp-ui-doc-use-webkit t)
+;;   ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
+;;   ;; https://github.com/emacs-lsp/lsp-ui/issues/243
+;;   (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
+;;     (setq mode-line-format nil)))
+
+;; (require 'company-lsp)
+;; (push 'company-lsp company-backends)
+(use-package projectile :ensure t)
+(use-package flycheck :ensure t)
+(use-package yasnippet
   :ensure t
-  :commands lsp
-  :custom
-  (lsp-auto-guess-root nil)
-  (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
-  :bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
-  :hook ((java-mode) . lsp)
-         (lsp-mode . lsp-enable-which-key-integration))
+  :config (yas-global-mode))
+(use-package lsp-mode :ensure t)
+(use-package hydra :ensure t)
+(use-package lsp-ui :ensure t)
 
+;; (use-package lsp-ui
+;;   :after lsp-mode
+;;   :diminish
+;;   :commands lsp-ui-mode
+;;   :custom-face
+;;   (lsp-ui-doc-background ((t (:background nil))))
+;;   (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
+;;   :bind (:map lsp-ui-mode-map
+;;               ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+;;               ([remap xref-find-references] . lsp-ui-peek-find-references)
+;;               ("C-c u" . lsp-ui-imenu))
+;;   :custom
+;;   (lsp-ui-doc-enable t)
+;;   (lsp-ui-doc-header t)
+;;   (lsp-ui-doc-include-signature t)
+;;   (lsp-ui-doc-position 'top)
+;;   (lsp-ui-doc-border (face-foreground 'default))
+;;   (lsp-ui-sideline-enable nil)
+;;   (lsp-ui-sideline-ignore-duplicate t)
+;;   (lsp-ui-sideline-show-code-actions nil)
+;;   :config
+;;   ;; Use lsp-ui-doc-webkit only in GUI
+;;   (setq lsp-ui-doc-use-webkit t)
+;;   ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
+;;   ;; https://github.com/emacs-lsp/lsp-ui/issues/243
+;;   (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
+;;     (setq mode-line-format nil)))
 
-(use-package lsp-ui
-  :after lsp-mode
-  :diminish
-  :commands lsp-ui-mode
-  :custom-face
-  (lsp-ui-doc-background ((t (:background nil))))
-  (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
-  :bind (:map lsp-ui-mode-map
-              ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-              ([remap xref-find-references] . lsp-ui-peek-find-references)
-              ("C-c u" . lsp-ui-imenu))
-  :custom
-  (lsp-ui-doc-enable t)
-  (lsp-ui-doc-header t)
-  (lsp-ui-doc-include-signature t)
-  (lsp-ui-doc-position 'top)
-  (lsp-ui-doc-border (face-foreground 'default))
-  (lsp-ui-sideline-enable nil)
-  (lsp-ui-sideline-ignore-duplicate t)
-  (lsp-ui-sideline-show-code-actions nil)
+(use-package lsp-java :ensure t
+  :config (add-hook 'java-mode-hook 'lsp))
+
+(use-package dap-mode
+  :ensure t :after lsp-mode
   :config
-  ;; Use lsp-ui-doc-webkit only in GUI
-  (setq lsp-ui-doc-use-webkit t)
-  ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
-  ;; https://github.com/emacs-lsp/lsp-ui/issues/243
-  (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
-    (setq mode-line-format nil)))
+  (dap-mode t)
+  (dap-ui-mode t))
+
+(use-package dap-java :after (lsp-java))
 
 ;; org-drill
 (eval-after-load "org"

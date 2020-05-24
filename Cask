@@ -61,3 +61,5 @@
 (depends-on "hcl-mode")
 (depends-on "terraform-mode")
 (depends-on "rustic")
+(depends-on "hydra")
+(depends-on "dap-java")
