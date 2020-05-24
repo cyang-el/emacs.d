@@ -347,7 +347,6 @@
   :config (yas-global-mode))
 (use-package lsp-mode :ensure t)
 (use-package hydra :ensure t)
-(use-package lsp-ui :ensure t)
 (use-package lsp-java :ensure t
   :config (add-hook 'java-mode-hook 'lsp))
 
@@ -358,6 +357,14 @@
   (dap-ui-mode t))
 
 (use-package dap-java :after (lsp-java))
+
+(use-package lsp-ui
+  :after lsp-mode
+  :diminish
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-doc-enable nil)
+  (lsp-ui-sideline-enable nil))
 
 ;; (use-package lsp-ui
 ;;   :after lsp-mode
