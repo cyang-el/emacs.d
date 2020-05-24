@@ -48,7 +48,7 @@
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
  '(package-selected-packages
    (quote
-    (persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen plantuml-mode htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region magit imenu-list ibuffer-projectile zenburn-theme))))
+    (meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen plantuml-mode htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region magit imenu-list ibuffer-projectile zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -340,37 +340,6 @@
 ;;   :hook ((java-mode) . lsp)
 ;;          (lsp-mode . lsp-enable-which-key-integration))
 
-
-;; (use-package lsp-ui
-;;   :after lsp-mode
-;;   :diminish
-;;   :commands lsp-ui-mode
-;;   :custom-face
-;;   (lsp-ui-doc-background ((t (:background nil))))
-;;   (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
-;;   :bind (:map lsp-ui-mode-map
-;;               ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-;;               ([remap xref-find-references] . lsp-ui-peek-find-references)
-;;               ("C-c u" . lsp-ui-imenu))
-;;   :custom
-;;   (lsp-ui-doc-enable t)
-;;   (lsp-ui-doc-header t)
-;;   (lsp-ui-doc-include-signature t)
-;;   (lsp-ui-doc-position 'top)
-;;   (lsp-ui-doc-border (face-foreground 'default))
-;;   (lsp-ui-sideline-enable nil)
-;;   (lsp-ui-sideline-ignore-duplicate t)
-;;   (lsp-ui-sideline-show-code-actions nil)
-;;   :config
-;;   ;; Use lsp-ui-doc-webkit only in GUI
-;;   (setq lsp-ui-doc-use-webkit t)
-;;   ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
-;;   ;; https://github.com/emacs-lsp/lsp-ui/issues/243
-;;   (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
-;;     (setq mode-line-format nil)))
-
-;; (require 'company-lsp)
-;; (push 'company-lsp company-backends)
 (use-package projectile :ensure t)
 (use-package flycheck :ensure t)
 (use-package yasnippet
@@ -379,35 +348,6 @@
 (use-package lsp-mode :ensure t)
 (use-package hydra :ensure t)
 (use-package lsp-ui :ensure t)
-
-;; (use-package lsp-ui
-;;   :after lsp-mode
-;;   :diminish
-;;   :commands lsp-ui-mode
-;;   :custom-face
-;;   (lsp-ui-doc-background ((t (:background nil))))
-;;   (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
-;;   :bind (:map lsp-ui-mode-map
-;;               ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-;;               ([remap xref-find-references] . lsp-ui-peek-find-references)
-;;               ("C-c u" . lsp-ui-imenu))
-;;   :custom
-;;   (lsp-ui-doc-enable t)
-;;   (lsp-ui-doc-header t)
-;;   (lsp-ui-doc-include-signature t)
-;;   (lsp-ui-doc-position 'top)
-;;   (lsp-ui-doc-border (face-foreground 'default))
-;;   (lsp-ui-sideline-enable nil)
-;;   (lsp-ui-sideline-ignore-duplicate t)
-;;   (lsp-ui-sideline-show-code-actions nil)
-;;   :config
-;;   ;; Use lsp-ui-doc-webkit only in GUI
-;;   (setq lsp-ui-doc-use-webkit t)
-;;   ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
-;;   ;; https://github.com/emacs-lsp/lsp-ui/issues/243
-;;   (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
-;;     (setq mode-line-format nil)))
-
 (use-package lsp-java :ensure t
   :config (add-hook 'java-mode-hook 'lsp))
 
@@ -418,6 +358,34 @@
   (dap-ui-mode t))
 
 (use-package dap-java :after (lsp-java))
+
+;; (use-package lsp-ui
+;;   :after lsp-mode
+;;   :diminish
+;;   :commands lsp-ui-mode
+;;   :custom-face
+;;   (lsp-ui-doc-background ((t (:background nil))))
+;;   (lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
+;;   :bind (:map lsp-ui-mode-map
+;;               ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
+;;               ([remap xref-find-references] . lsp-ui-peek-find-references)
+;;               ("C-c u" . lsp-ui-imenu))
+;;   :custom
+;;   (lsp-ui-doc-enable t)
+;;   (lsp-ui-doc-header t)
+;;   (lsp-ui-doc-include-signature t)
+;;   (lsp-ui-doc-position 'top)
+;;   (lsp-ui-doc-border (face-foreground 'default))
+;;   (lsp-ui-sideline-enable nil)
+;;   (lsp-ui-sideline-ignore-duplicate t)
+;;   (lsp-ui-sideline-show-code-actions nil)
+;;   :config
+;;   ;; Use lsp-ui-doc-webkit only in GUI
+;;   (setq lsp-ui-doc-use-webkit t)
+;;   ;; WORKAROUND Hide mode-line of the lsp-ui-imenu buffer
+;;   ;; https://github.com/emacs-lsp/lsp-ui/issues/243
+;;   (defadvice lsp-ui-imenu (after hide-lsp-ui-imenu-mode-line activate)
+;;     (setq mode-line-format nil)))
 
 ;; org-drill
 (eval-after-load "org"
