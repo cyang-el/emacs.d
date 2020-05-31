@@ -63,4 +63,4 @@
 (depends-on "rustic")
 (depends-on "hydra")
 (depends-on "dap-java")
-(depneds-on "omnisharp")
+(depends-on "omnisharp")
