@@ -43,12 +43,20 @@
  '(custom-safe-themes
    (quote
     ("76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" "84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
+ '(lsp-ui-doc-border "#DCDCCC")
+ '(lsp-ui-doc-enable nil)
+ '(lsp-ui-doc-header t)
+ '(lsp-ui-doc-include-signature t)
+ '(lsp-ui-doc-position (quote bottom))
+ '(lsp-ui-sideline-enable nil)
+ '(lsp-ui-sideline-ignore-duplicate t)
+ '(lsp-ui-sideline-show-code-actions nil)
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
  '(package-selected-packages
    (quote
-    (meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen plantuml-mode htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region magit imenu-list ibuffer-projectile zenburn-theme))))
+    (tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen plantuml-mode htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region magit imenu-list ibuffer-projectile zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -405,4 +413,108 @@
 (use-package rustic)
 (when (string= system-type "darwin")
   (setq dired-use-ls-dired nil))
+
+;; tide ====================
+(require 'tide)
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode +1)
+  (setq flycheck-check-syntax-automatically '(save mode-enabled))
+  (eldoc-mode +1)
+  (tide-hl-identifier-mode +1)
+  ;; company is an optional dependency. You have to
+  ;; install it separately via package-install
+  ;; `M-x package-install [ret] company`
+  (company-mode +1))
+
+;; aligns annotation to the right hand side
+(setq company-tooltip-align-annotations t)
+
+;; formats the buffer before saving
+(add-hook 'before-save-hook 'tide-format-before-save)
+
+(add-hook 'typescript-mode-hook #'setup-tide-mode)
+
+;; ts format
+(setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
+
+;; js
+(add-hook 'js-mode-hook #'setup-tide-mode)
+;; configure javascript-tide checker to run after your default javascript checker
+(flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
+
+;; jsx
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+(add-hook 'web-mode-hook
+          (lambda ()
+            (when (string-equal "jsx" (file-name-extension buffer-file-name))
+              (setup-tide-mode))))
+;; configure jsx-tide checker to run after your default jsx checker
+(flycheck-add-mode 'javascript-eslint 'web-mode)
+(flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append)
+
+;; use package
+(use-package tide
+  :ensure t
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; Via Python, open chrome at localhost:1234
+(defun goto-1234 ()
+  "Via Python, open chrome at localhost:1234."
+  (interactive)
+  (shell-command "python ~/open_local_1234.py"))
+
+(add-hook 'js-mode-hook
+	  (lambda ()
+	    (progn
+	      (local-set-key
+	       (kbd "C-x w") 'goto-1234))))
+
+(add-hook 'html-mode-hook
+	  (lambda ()
+	    (progn
+	      (local-set-key
+	       (kbd "C-x w") 'goto-1234))))
+
+(add-hook 'css-mode-hook
+	  (lambda ()
+	    (progn
+	      (local-set-key
+	       (kbd "C-x w") 'goto-1234))))
+
+;; C#
+(eval-after-load
+  'company
+  '(add-to-list 'company-backends #'company-omnisharp))
+
+(defun my-csharp-mode-setup ()
+  (omnisharp-mode)
+  (company-mode)
+  (flycheck-mode)
+
+  (setq indent-tabs-mode nil)
+  (setq c-syntactic-indentation t)
+  (c-set-style "ellemtel")
+  (setq c-basic-offset 4)
+  (setq truncate-lines t)
+  (setq tab-width 4)
+  (setq evil-shift-width 4)
+
+  ;csharp-mode README.md recommends this too
+  ;(electric-pair-mode 1)       ;; Emacs 24
+  ;(electric-pair-local-mode 1) ;; Emacs 25
+
+  (local-set-key (kbd "C-c r r") 'omnisharp-run-code-action-refactoring)
+  (local-set-key (kbd "C-c C-c") 'recompile))
+
+(add-hook 'csharp-mode-hook 'my-csharp-mode-setup t)
+
 ;;; .emacs ends here
