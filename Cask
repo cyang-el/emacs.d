@@ -64,3 +64,5 @@
 (depends-on "hydra")
 (depends-on "dap-java")
 (depends-on "omnisharp")
+(depends-on "gnugo")
+(depends-on "crux")
