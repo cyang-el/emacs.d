@@ -1,0 +1,19 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '((".plantuml.com"
+  [url-cookie "__cfduid" "d88b4190d9a0f7f4cb72260b1d09774b21591279209" "Sat, 04-Jul-20 14:00:09 GMT" "/" ".plantuml.com" nil])
+ ("plantuml.com"
+  [url-cookie "ezCMPCCS" "true" "Fri, 04 Jun 2021 17:24:39 GMT" "/" "plantuml.com" nil]))
+)
+(setq url-cookie-secure-storage
+ '(("github.com"
+  [url-cookie "_octo" "GH1.1.1448577836.1591770510" "Thu, 10 Jun 2021 06:28:30 GMT" "/" "github.com" t]
+  [url-cookie "logged_in" "no" "Thu, 10 Jun 2021 06:28:30 GMT" "/" "github.com" t]))
+)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:
