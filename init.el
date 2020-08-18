@@ -58,7 +58,7 @@
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
  '(package-selected-packages
    (quote
-    (dashboard csv-mode crux gnugo spotify magit plantuml-mode treemacs-projectile terraform-mode hcl-mode json-mode cider yaml-mode ag company tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region imenu-list ibuffer-projectile zenburn-theme))))
+    (haskell-mode go-mode dashboard csv-mode crux gnugo spotify magit plantuml-mode treemacs-projectile terraform-mode hcl-mode json-mode cider yaml-mode ag company tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region imenu-list ibuffer-projectile zenburn-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -645,6 +645,11 @@ P")
 (add-to-list 'auto-mode-alist '("\\.[Cc][Ss][Vv]\\'" . csv-mode))
 (autoload 'csv-mode "csv-mode"
   "Major mode for editing comma-separated value files." t)
+
+;; tidal: https://tidalcycles.org
+(setq load-path (cons "./tidal/" load-path))
+(require 'tidal)
+(setq tidal-interpreter "~/.ghcup/bin/ghci")
 
 ;; startup dashboard
 (require 'dashboard)
