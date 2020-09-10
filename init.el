@@ -45,6 +45,7 @@
  '(custom-safe-themes
    (quote
     ("816bacf37139d6204b761fea0d25f7f2f43b94affa14aa4598bce46157c160c2" "76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" "84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
+ '(global-wakatime-mode t)
  '(lsp-ui-doc-border "#DCDCCC")
  '(lsp-ui-doc-enable nil t)
  '(lsp-ui-doc-header t)
@@ -58,7 +59,9 @@
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
  '(package-selected-packages
    (quote
-    (ein haskell-mode go-mode dashboard csv-mode crux gnugo spotify magit plantuml-mode treemacs-projectile terraform-mode hcl-mode json-mode cider yaml-mode ag company tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region imenu-list ibuffer-projectile zenburn-theme))))
+    (wakatime-mode ein haskell-mode go-mode dashboard csv-mode crux gnugo spotify magit plantuml-mode treemacs-projectile terraform-mode hcl-mode json-mode cider yaml-mode ag company tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region imenu-list ibuffer-projectile zenburn-theme)))
+ '(wakatime-cli-path "/Users/yangchenghsun/.pyenv/shims/wakatime")
+ '(wakatime-python-bin nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -671,5 +674,11 @@ P")
          (point-max)
          "textutil -stdin -format html -convert rtf -stdout | pbcopy"))
       (kill-buffer buf))))
+
+;; wakatime
+;; Add to ~/.wakatime.cfg to following
+;; [settings]
+;; api_key = <api-key>
+(global-wakatime-mode)
 
 ;;; .emacs ends here
