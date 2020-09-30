@@ -46,6 +46,8 @@
    (quote
     ("816bacf37139d6204b761fea0d25f7f2f43b94affa14aa4598bce46157c160c2" "76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" "84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
  '(global-wakatime-mode t)
+ '(lsp-auto-guess-root nil)
+ '(lsp-prefer-flymake nil t)
  '(lsp-ui-doc-border "#DCDCCC")
  '(lsp-ui-doc-enable nil t)
  '(lsp-ui-doc-header t)
@@ -59,7 +61,7 @@
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
  '(package-selected-packages
    (quote
-    (lsp-ivy svelte-mode psci psc-ide reason-mode hy-mode hindent janet-mode wakatime-mode ein haskell-mode go-mode dashboard csv-mode crux gnugo spotify magit plantuml-mode treemacs-projectile terraform-mode hcl-mode json-mode cider yaml-mode ag company tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region imenu-list ibuffer-projectile zenburn-theme)))
+    (org-bullets lsp-ivy svelte-mode psci psc-ide reason-mode hy-mode hindent janet-mode wakatime-mode ein haskell-mode go-mode dashboard csv-mode crux gnugo spotify magit plantuml-mode treemacs-projectile terraform-mode hcl-mode json-mode cider yaml-mode ag company tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region imenu-list ibuffer-projectile zenburn-theme)))
  '(wakatime-cli-path "/Users/yangchenghsun/.pyenv/shims/wakatime")
  '(wakatime-python-bin nil))
 (custom-set-faces
@@ -75,11 +77,11 @@
 (enable-theme 'zenburn)
 (set-face-attribute 'default nil :height 140)
 
-(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 (if window-system
-    (tool-bar-mode -1)
-  )
+    (menu-bar-mode 1)
+  (menu-bar-mode -1))
 
 (add-hook 'prog-mode-hook 'linum-mode)
 
@@ -214,6 +216,33 @@
  'org-babel-load-languages
  '((plantuml . t)
    (python . t)))
+
+(setq org-hide-emphasis-markers t)
+
+(font-lock-add-keywords 'org-mode
+                        '(("^ +\\([-*]\\) "
+                           (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
+
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+(let* ((variable-tuple (cond ((x-list-fonts "Source Sans Pro") '(:font "Source Sans Pro"))
+                             ((x-list-fonts "Lucida Grande")   '(:font "Lucida Grande"))
+                             ((x-list-fonts "Verdana")         '(:font "Verdana"))
+                             ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
+                             (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
+       (headline           `(:inherit default :weight bold)))
+
+  (custom-theme-set-faces 'user
+                          `(org-level-8 ((t (,@headline ,@variable-tuple))))
+                          `(org-level-7 ((t (,@headline ,@variable-tuple))))
+                          `(org-level-6 ((t (,@headline ,@variable-tuple))))
+                          `(org-level-5 ((t (,@headline ,@variable-tuple))))
+                          `(org-level-4 ((t (,@headline ,@variable-tuple :height 0.9))))
+                          `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.1))))
+                          `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.25))))
+                          `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.5))))
+                          `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))))
 
 ;; for syntax highlight
 ;; install htmlize
