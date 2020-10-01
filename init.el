@@ -44,16 +44,16 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("816bacf37139d6204b761fea0d25f7f2f43b94affa14aa4598bce46157c160c2" "76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" "84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
+    ("939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "e1d09f1b2afc2fed6feb1d672be5ec6ae61f84e058cb757689edb669be926896" "0feb7052df6cfc1733c1087d3876c26c66410e5f1337b039be44cb406b6187c6" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "816bacf37139d6204b761fea0d25f7f2f43b94affa14aa4598bce46157c160c2" "76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" "84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
  '(global-wakatime-mode t)
  '(lsp-auto-guess-root nil)
  '(lsp-prefer-flymake nil t)
  '(lsp-ui-doc-border "#DCDCCC")
- '(lsp-ui-doc-enable nil t)
+ '(lsp-ui-doc-enable nil)
  '(lsp-ui-doc-header t)
  '(lsp-ui-doc-include-signature t)
  '(lsp-ui-doc-position (quote bottom))
- '(lsp-ui-sideline-enable nil t)
+ '(lsp-ui-sideline-enable nil)
  '(lsp-ui-sideline-ignore-duplicate t)
  '(lsp-ui-sideline-show-code-actions nil)
  '(org-modules
@@ -61,7 +61,7 @@
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
  '(package-selected-packages
    (quote
-    (org-bullets lsp-ivy svelte-mode psci psc-ide reason-mode hy-mode hindent janet-mode wakatime-mode ein haskell-mode go-mode dashboard csv-mode crux gnugo spotify magit plantuml-mode treemacs-projectile terraform-mode hcl-mode json-mode cider yaml-mode ag company tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region imenu-list ibuffer-projectile zenburn-theme)))
+    (gruvbox-theme moe-theme solarized-theme spacemacs-theme org-bullets lsp-ivy svelte-mode psci psc-ide reason-mode hy-mode hindent janet-mode wakatime-mode ein haskell-mode go-mode dashboard csv-mode crux gnugo spotify magit plantuml-mode treemacs-projectile terraform-mode hcl-mode json-mode cider yaml-mode ag company tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region imenu-list ibuffer-projectile zenburn-theme)))
  '(wakatime-cli-path "/Users/yangchenghsun/.pyenv/shims/wakatime")
  '(wakatime-python-bin nil))
 (custom-set-faces
@@ -70,11 +70,20 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(lsp-ui-doc-background ((t (:background nil))))
- '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic))))))
+ '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
+ '(org-document-title ((t (:inherit default :weight bold :foreground "#DCDCCC" :font "Lucida Grande" :height 1.5 :underline nil))))
+ '(org-level-1 ((t (:inherit default :weight bold :foreground "#DCDCCC" :font "Lucida Grande" :height 1.75))))
+ '(org-level-2 ((t (:inherit default :weight bold :foreground "#DCDCCC" :font "Lucida Grande" :height 1.5))))
+ '(org-level-3 ((t (:inherit default :weight bold :foreground "#DCDCCC" :font "Lucida Grande" :height 1.25))))
+ '(org-level-4 ((t (:inherit default :weight bold :foreground "#DCDCCC" :font "Lucida Grande" :height 1.1))))
+ '(org-level-5 ((t (:inherit default :weight bold :foreground "#DCDCCC" :font "Lucida Grande"))))
+ '(org-level-6 ((t (:inherit default :weight bold :foreground "#DCDCCC" :font "Lucida Grande"))))
+ '(org-level-7 ((t (:inherit default :weight bold :foreground "#DCDCCC" :font "Lucida Grande"))))
+ '(org-level-8 ((t (:inherit default :weight bold :foreground "#DCDCCC" :font "Lucida Grande")))))
 
 ;; package install zenburn-theme
-(load-theme 'zenburn)
-(enable-theme 'zenburn)
+(load-theme 'gruvbox-light-medium)
+(enable-theme 'gruvbox-light-medium)
 (set-face-attribute 'default nil :height 140)
 
 (tool-bar-mode -1)
@@ -579,6 +588,14 @@
          (point-max)
          "textutil -stdin -format html -convert rtf -stdout | pbcopy"))
       (kill-buffer buf))))
+
+;; reasonml
+(lsp-register-client
+ (make-lsp-client :new-connection (lsp-stdio-connection "/Users/yangchenghsun/.emacs.d/reason-language-server")
+                  :major-modes '(reason-mode)
+                  :notification-handlers (ht ("client/registerCapability" 'ignore))
+                  :priority 1
+                  :server-id 'reason-ls))
 
 ;; wakatime
 ;; Add to ~/.wakatime.cfg to following
