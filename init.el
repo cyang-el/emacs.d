@@ -44,7 +44,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "e1d09f1b2afc2fed6feb1d672be5ec6ae61f84e058cb757689edb669be926896" "0feb7052df6cfc1733c1087d3876c26c66410e5f1337b039be44cb406b6187c6" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "816bacf37139d6204b761fea0d25f7f2f43b94affa14aa4598bce46157c160c2" "76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" "84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
+    ("aded61687237d1dff6325edb492bde536f40b048eab7246c61d5c6643c696b7f" "939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "e1d09f1b2afc2fed6feb1d672be5ec6ae61f84e058cb757689edb669be926896" "0feb7052df6cfc1733c1087d3876c26c66410e5f1337b039be44cb406b6187c6" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "816bacf37139d6204b761fea0d25f7f2f43b94affa14aa4598bce46157c160c2" "76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" "84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
  '(lsp-auto-guess-root nil)
  '(lsp-prefer-flymake nil t)
  '(lsp-ui-doc-border "#DCDCCC")
@@ -55,7 +55,9 @@
  '(lsp-ui-sideline-enable nil t)
  '(lsp-ui-sideline-ignore-duplicate t)
  '(lsp-ui-sideline-show-code-actions nil)
- '(org-agenda-files (quote ("~/TODO.org")))
+ '(org-agenda-files
+   (quote
+    ("~/WORK_MAIN.org" "~/sinch_workspace/Sinch_TODO.org")))
  '(org-modules
    (quote
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
@@ -64,8 +66,13 @@
     (gruvbox-theme moe-theme solarized-theme spacemacs-theme org-bullets lsp-ivy svelte-mode psci psc-ide reason-mode hy-mode hindent janet-mode ein haskell-mode go-mode dashboard csv-mode crux gnugo spotify magit plantuml-mode treemacs-projectile terraform-mode hcl-mode json-mode cider yaml-mode ag company tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region imenu-list ibuffer-projectile zenburn-theme))))
 
 ;; package install zenburn-theme
-(load-theme 'gruvbox-light-medium)
-(enable-theme 'gruvbox-light-medium)
+
+(if window-system
+    (progn (load-theme 'gruvbox-light-medium)
+	   (enable-theme 'gruvbox-light-medium))
+  (progn (load-theme 'gruvbox-dark-medium)
+	 (enable-theme 'gruvbox-dark-medium)))
+
 (set-face-attribute 'default nil :height 140)
 
 (tool-bar-mode -1)
@@ -238,21 +245,21 @@
        `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.5))))
        `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))))
   (let* ((variable-tuple
-	    (cond ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
+	  (cond ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
 		  (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
-	   (headline           `(:inherit default :weight bold)))
+	 (headline           `(:inherit default :weight bold)))
 
-      (custom-theme-set-faces
-       'user
-       `(org-level-8 ((t (,@headline ,@variable-tuple))))
-       `(org-level-7 ((t (,@headline ,@variable-tuple))))
-       `(org-level-6 ((t (,@headline ,@variable-tuple))))
-       `(org-level-5 ((t (,@headline ,@variable-tuple))))
-       `(org-level-4 ((t (,@headline ,@variable-tuple :height 0.9))))
-       `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.1))))
-       `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.25))))
-       `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.5))))
-       `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil)))))))
+    (custom-theme-set-faces
+     'user
+     `(org-level-8 ((t (,@headline ,@variable-tuple))))
+     `(org-level-7 ((t (,@headline ,@variable-tuple))))
+     `(org-level-6 ((t (,@headline ,@variable-tuple))))
+     `(org-level-5 ((t (,@headline ,@variable-tuple))))
+     `(org-level-4 ((t (,@headline ,@variable-tuple :height 0.9))))
+     `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.1))))
+     `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.25))))
+     `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.5))))
+     `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil)))))))
 
 ;; for syntax highlight
 ;; install htmlize
@@ -599,3 +606,19 @@
                   :server-id 'reason-ls))
 
 ;;; .emacs ends here
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(lsp-ui-doc-background ((t (:background nil))))
+ '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
+ '(org-document-title ((t (:inherit default :weight bold :foreground "#ffffaf" :height 1.5 :underline nil))))
+ '(org-level-1 ((t (:inherit default :weight bold :foreground "#ffffaf" :height 1.5))))
+ '(org-level-2 ((t (:inherit default :weight bold :foreground "#ffffaf" :height 1.25))))
+ '(org-level-3 ((t (:inherit default :weight bold :foreground "#ffffaf" :height 1.1))))
+ '(org-level-4 ((t (:inherit default :weight bold :foreground "#ffffaf" :height 0.9))))
+ '(org-level-5 ((t (:inherit default :weight bold :foreground "#ffffaf"))))
+ '(org-level-6 ((t (:inherit default :weight bold :foreground "#ffffaf"))))
+ '(org-level-7 ((t (:inherit default :weight bold :foreground "#ffffaf"))))
+ '(org-level-8 ((t (:inherit default :weight bold :foreground "#ffffaf")))))
