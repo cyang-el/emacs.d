@@ -44,7 +44,7 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("aded61687237d1dff6325edb492bde536f40b048eab7246c61d5c6643c696b7f" "939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "e1d09f1b2afc2fed6feb1d672be5ec6ae61f84e058cb757689edb669be926896" "0feb7052df6cfc1733c1087d3876c26c66410e5f1337b039be44cb406b6187c6" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "816bacf37139d6204b761fea0d25f7f2f43b94affa14aa4598bce46157c160c2" "76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" "84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
+    ("939ea070fb0141cd035608b2baabc4bd50d8ecc86af8528df9d41f4d83664c6a" "e1d09f1b2afc2fed6feb1d672be5ec6ae61f84e058cb757689edb669be926896" "0feb7052df6cfc1733c1087d3876c26c66410e5f1337b039be44cb406b6187c6" "2809bcb77ad21312897b541134981282dc455ccd7c14d74cc333b6e549b824f3" "c433c87bd4b64b8ba9890e8ed64597ea0f8eb0396f4c9a9e01bd20a04d15d358" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" "816bacf37139d6204b761fea0d25f7f2f43b94affa14aa4598bce46157c160c2" "76c5b2592c62f6b48923c00f97f74bcb7ddb741618283bdb2be35f3c0e1030e3" "84890723510d225c45aaff941a7e201606a48b973f0121cb9bcb0b9399be8cba" default)))
  '(lsp-auto-guess-root nil)
  '(lsp-prefer-flymake nil t)
  '(lsp-ui-doc-border "#DCDCCC")
@@ -614,12 +614,12 @@
  ;; If there is more than one, they won't work right.
  '(lsp-ui-doc-background ((t (:background nil))))
  '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
- '(org-document-title ((t (:inherit default :weight bold :height 1.5 :underline nil))))
- '(org-level-1 ((t (:inherit default :weight bold :height 1.5))))
- '(org-level-2 ((t (:inherit default :weight bold :height 1.25))))
- '(org-level-3 ((t (:inherit default :weight bold :height 1.1))))
- '(org-level-4 ((t (:inherit default :weight bold :height 0.9))))
- '(org-level-5 ((t (:inherit default :weight bold))))
- '(org-level-6 ((t (:inherit default :weight bold))))
- '(org-level-7 ((t (:inherit default :weight bold))))
- '(org-level-8 ((t (:inherit default :weight bold)))))
+ '(org-document-title ((t (:inherit default :weight bold :foreground "#282828" :font "Lucida Grande" :height 1.5 :underline nil))))
+ '(org-level-1 ((t (:inherit default :foreground "dark red" :slant normal :weight bold :height 1.75 :width normal :foundry "nil" :family "Lucida Grande"))))
+ '(org-level-2 ((t (:inherit default :foreground "DodgerBlue3" :slant normal :weight bold :height 1.5 :width normal :foundry "nil" :family "Lucida Grande"))))
+ '(org-level-3 ((t (:inherit default :foreground "green4" :slant normal :weight bold :height 1.25 :width normal :foundry "nil" :family "Lucida Grande"))))
+ '(org-level-4 ((t (:inherit default :foreground "DarkOrange4" :slant normal :weight bold :height 1.1 :width normal :foundry "nil" :family "Lucida Grande"))))
+ '(org-level-5 ((t (:inherit default :foreground "turquoise4" :slant normal :weight bold :height 140 :width normal :foundry "nil" :family "Lucida Grande"))))
+ '(org-level-6 ((t (:inherit default :foreground "DarkOliveGreen4" :slant normal :weight bold :height 140 :width normal :foundry "nil" :family "Lucida Grande"))))
+ '(org-level-7 ((t (:inherit default :foreground "firebrick3" :slant normal :weight bold :height 140 :width normal :foundry "nil" :family "Lucida Grande"))))
+ '(org-level-8 ((t (:inherit default :foreground "SkyBlue4" :slant normal :weight bold :height 140 :width normal :foundry "nil" :family "Lucida Grande")))))
