@@ -63,7 +63,7 @@
     (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m)))
  '(package-selected-packages
    (quote
-    (gruvbox-theme moe-theme solarized-theme spacemacs-theme org-bullets lsp-ivy svelte-mode psci psc-ide reason-mode hy-mode hindent janet-mode ein haskell-mode go-mode dashboard csv-mode crux gnugo spotify magit plantuml-mode treemacs-projectile terraform-mode hcl-mode json-mode cider yaml-mode ag company tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region imenu-list ibuffer-projectile zenburn-theme))))
+    (company-terraform gruvbox-theme moe-theme solarized-theme spacemacs-theme org-bullets lsp-ivy svelte-mode psci psc-ide reason-mode hy-mode hindent janet-mode ein haskell-mode go-mode dashboard csv-mode crux gnugo spotify magit plantuml-mode treemacs-projectile terraform-mode hcl-mode json-mode cider yaml-mode ag company tide ## omnisharp meghanada persp-projectile lsp-java treemacs rustic js2-mode use-package tree-mode ace-window dap-mode helm-lsp lsp-treemacs company-lsp lsp-ui lsp-mode jedi pyenv-mode-auto pyenv-mode highlight-indent-guides slime restclient rainbow-delimiters persp-mode elscreen-fr elscreen htmlize org exec-path-from-shell json-navigator flycheck whole-line-or-region imenu-list ibuffer-projectile zenburn-theme))))
 
 ;; package install zenburn-theme
 
@@ -231,7 +231,8 @@
 		  ((x-list-fonts "Verdana")         '(:font "Verdana"))
 		  ((x-family-fonts "Sans Serif")    '(:family "Sans Serif"))
 		  (nil (warn "Cannot find a Sans Serif Font.  Install Source Sans Pro."))))
-	   (headline           `(:inherit default :weight bold)))
+	   (base-font-color     (face-foreground 'default nil 'default))
+	   (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
 
       (custom-theme-set-faces
        'user
@@ -613,12 +614,12 @@
  ;; If there is more than one, they won't work right.
  '(lsp-ui-doc-background ((t (:background nil))))
  '(lsp-ui-doc-header ((t (:inherit (font-lock-string-face italic)))))
- '(org-document-title ((t (:inherit default :weight bold :foreground "#ffffaf" :height 1.5 :underline nil))))
- '(org-level-1 ((t (:inherit default :weight bold :foreground "#ffffaf" :height 1.5))))
- '(org-level-2 ((t (:inherit default :weight bold :foreground "#ffffaf" :height 1.25))))
- '(org-level-3 ((t (:inherit default :weight bold :foreground "#ffffaf" :height 1.1))))
- '(org-level-4 ((t (:inherit default :weight bold :foreground "#ffffaf" :height 0.9))))
- '(org-level-5 ((t (:inherit default :weight bold :foreground "#ffffaf"))))
- '(org-level-6 ((t (:inherit default :weight bold :foreground "#ffffaf"))))
- '(org-level-7 ((t (:inherit default :weight bold :foreground "#ffffaf"))))
- '(org-level-8 ((t (:inherit default :weight bold :foreground "#ffffaf")))))
+ '(org-document-title ((t (:inherit default :weight bold :height 1.5 :underline nil))))
+ '(org-level-1 ((t (:inherit default :weight bold :height 1.5))))
+ '(org-level-2 ((t (:inherit default :weight bold :height 1.25))))
+ '(org-level-3 ((t (:inherit default :weight bold :height 1.1))))
+ '(org-level-4 ((t (:inherit default :weight bold :height 0.9))))
+ '(org-level-5 ((t (:inherit default :weight bold))))
+ '(org-level-6 ((t (:inherit default :weight bold))))
+ '(org-level-7 ((t (:inherit default :weight bold))))
+ '(org-level-8 ((t (:inherit default :weight bold)))))
